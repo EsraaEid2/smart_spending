@@ -52,9 +52,6 @@ function logup(event, us, em, pass, passMatch) {
     username: username,
     email: email,
     password: password,
-    income: [],
-    expenses: [],
-    savings: [],
     signupDate: new Date().toISOString(),
     role: "user",
   };
@@ -62,6 +59,7 @@ function logup(event, us, em, pass, passMatch) {
   users.push(newUser);
   localStorage.setItem("users", JSON.stringify(users));
   signupErrorMessage.textContent = "";
+  localStorage.setItem("current_user", newUser.email);
   console.log("Signup successful!", newUser);
   window.location.href = "../main_page/services.html";
 }
@@ -85,6 +83,7 @@ function login(event, em, pw) {
   if (user) {
     console.log("Login successful!", user);
     loginErrorMessage.textContent = "";
+    localStorage.setItem("current_user", em);
     window.location.href = "../main_page/services.html";
   } else {
     loginErrorMessage.textContent = "Invalid email or password";
